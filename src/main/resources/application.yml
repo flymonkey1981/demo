@@ -3,7 +3,7 @@ spring:
 #    url: jdbc:mysql://localhost:3306/shoppingDB?useSSL=false&allowPublicKeyRetrieval=true
 #    username: root
 #    password: 111111
-    url: jdbc:mysql://localhost:3306/shoppingDB?useSSL=false
+    url: jdbc:mysql://localhost:3306/shoppingdb?useSSL=false
     username: springuser
     password: Chen1981
     testWhileIdle: true
@@ -19,7 +19,9 @@ spring:
 
 okta:
   oauth2:
-    issuer: https://dev-461195.okta.com/oauth2/default
-    client-id: 0oa35qp3jgMJfJVYG4x6
-    client-secret: wZDht4pfuk4_2Vw5gjwNwYfgQ7YMRkeMeIviO3so
+    issuer: https://dev-433979.okta.com/oauth2/default
+    client-id: 0oa36inxodwukffXI4x6
+    client-secret: cC1jJdpgHdZ-DTt71F-SfE-l5D3ER02bCh_cX1EO
     groups-claim: groups
+
+
