@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping(value="api/v1/person", produces = { MediaType.APPLICATION_JSON_VALUE })
 public class PersonController {
@@ -26,6 +27,7 @@ public class PersonController {
         personService.insertPerson(person);
 
     }
+
     @GetMapping
     public List<Person> listPerson(){
         return personService.listPersons();
@@ -33,7 +35,7 @@ public class PersonController {
     }
 
     @GetMapping(path="{id}")
-    @PreAuthorize("hasAuthority('admin')")
+    @PreAuthorize("hasAuthority('user')")
     public Person getPersonById(@PathVariable("id") Long id){
         return personService.getPersonById(id).orElse(null);
     }

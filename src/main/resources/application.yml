@@ -19,9 +19,10 @@ spring:
 
 okta:
   oauth2:
-    issuer: https://dev-433979.okta.com/oauth2/default
-    client-id: 0oa36inxodwukffXI4x6
-    client-secret: cC1jJdpgHdZ-DTt71F-SfE-l5D3ER02bCh_cX1EO
+    issuer: https://dev-602187.okta.com/oauth2/default
+    #client-id: 0oa386rkrEmG1ns0V4x6
+    #client-secret: cRjiuvffk_1bTG10hRSZ34BE9BiarkpgqCZiK0kz
+    client-id: 0oa3a6fzgvIGg09Fj4x6
     groups-claim: groups
 
 
