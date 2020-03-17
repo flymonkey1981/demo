@@ -3,13 +3,13 @@ spring:
 #    url: jdbc:mysql://localhost:3306/shoppingDB?useSSL=false&allowPublicKeyRetrieval=true
 #    username: root
 #    password: 111111
-    url: jdbc:mysql://localhost:3306/shoppingdb?useSSL=false
+    url: jdbc:mysql://localhost:3306/shoppingdb?useSSL=false&allowPublicKeyRetrieval=true
     username: springuser
     password: Chen1981
     testWhileIdle: true
     validationQuery: SELECT 1
   jpa:
-    hibernate.ddl-auto: validate
+    hibernate.ddl-auto: update
     generate-ddl: true
     show-sql: true
     naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
@@ -22,7 +22,9 @@ okta:
     issuer: https://dev-602187.okta.com/oauth2/default
     #client-id: 0oa386rkrEmG1ns0V4x6
     #client-secret: cRjiuvffk_1bTG10hRSZ34BE9BiarkpgqCZiK0kz
-    client-id: 0oa3a6fzgvIGg09Fj4x6
+    #client-id: 0oa3a6fzgvIGg09Fj4x6
+    #react native
+    client-id: 0oa3xtxk3YA8zfBUt4x6
     groups-claim: groups
 
 
