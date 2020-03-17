@@ -87,5 +87,8 @@ public class User implements Serializable {
         order.setUser(null);
     }
 
+    public List<Orders> getOrders(){
+        return this.orders;
+    }
 
 }
