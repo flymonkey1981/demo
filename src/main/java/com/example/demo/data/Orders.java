@@ -1,6 +1,9 @@
 package com.example.demo.data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "orders")
@@ -15,6 +18,15 @@ public class Orders {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    @ManyToMany
+    @JoinTable(
+            name = "order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    List<Product> products = new ArrayList<>();;
+
+
 
     protected Orders(){}
 
@@ -48,6 +60,20 @@ public class Orders {
 
     public void setUser(User user){
         this.user = user;
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+
+    }
+
+    public void removeProduct(Product product) {
+        products.remove(product);
+
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 
 }
