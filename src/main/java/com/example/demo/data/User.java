@@ -37,6 +37,11 @@ public class User implements Serializable {
     )
     private List<Orders> orders = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+    private Cart cart;
+
+
     protected User() {}
 
     public User(String userName, String lastName, String firstName, Date dob, int status) {

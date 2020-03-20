@@ -2,6 +2,7 @@ package com.example.demo.data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -25,6 +26,10 @@ public class Orders {
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     List<Product> products = new ArrayList<>();;
+
+    Date createDate;
+
+    Date modifyDate;
 
 
 
@@ -60,6 +65,14 @@ public class Orders {
 
     public void setUser(User user){
         this.user = user;
+    }
+
+    public Date getCreateDate() {
+        return this.createDate;
+    }
+
+    public void setCreateDate(Date date) {
+        this.createDate = date;
     }
 
     public void addProduct(Product product) {
