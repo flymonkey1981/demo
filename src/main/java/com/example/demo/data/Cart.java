@@ -65,4 +65,12 @@ public class Cart {
     public List<Product> getProducts() {
         return products;
     }
+
+    public String getVoucherCode() {
+        return voucherCode;
+    }
+
+    public void setVoucherCode(String voucherCode) {
+        this.voucherCode = voucherCode;
+    }
 }

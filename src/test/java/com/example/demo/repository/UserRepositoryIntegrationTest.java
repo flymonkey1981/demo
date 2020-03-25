@@ -1,9 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.data.Cart;
-import com.example.demo.data.Orders;
-import com.example.demo.data.Product;
-import com.example.demo.data.User;
+import com.example.demo.data.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,5 +118,31 @@ public class UserRepositoryIntegrationTest {
         assertThat(selectCart.getProducts().size())
                 .isEqualTo(1);
 
+    }
+
+    @Test
+    void testUserProductJoinTable() throws Exception {
+        Cart cart = new Cart("abc-wer", new Date());
+        Product product_1 = new Product("Samsung", "Samsung XL", 20.98, new BigDecimal(20));
+        Product product_2 = new Product("Apple", "Apple XL", 220.98, new BigDecimal(120));
+        productRepository.save(product_1);
+        productRepository.save(product_2);
+
+        Product product = productRepository.findByProductName("Apple").get();
+
+        String sdob = "31/12/1998";
+        Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
+
+        User u1 = new User("vcb", "bob", "vc", dob, 1);
+        UserProduct userProduct = new UserProduct(u1,product, new Date(), "it is good", 5);
+        u1.addUserProduct(userProduct);
+        userRepository.save(u1);
+
+
+
+        assertThat(userRepository.findByLastName("bob").getUserProducts().size())
+                .isEqualTo(1);
+        assertThat(userRepository.findByLastName("bob").getUserProducts().get(0).getComment())
+                .isEqualTo("it is good");
     }
 }

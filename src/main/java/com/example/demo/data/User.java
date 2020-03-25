@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User implements Serializable {
@@ -40,6 +41,11 @@ public class User implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
     private Cart cart;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserProduct> userProducts = new ArrayList<>();
+
+
 
 
     protected User() {}
@@ -92,8 +98,18 @@ public class User implements Serializable {
         order.setUser(null);
     }
 
+    public void addUserProduct(UserProduct userProduct) {
+        userProducts.add(userProduct);
+    }
+
+
+
     public List<Orders> getOrders(){
         return this.orders;
+    }
+
+    public List<UserProduct> getUserProducts() {
+        return this.userProducts;
     }
 
 }

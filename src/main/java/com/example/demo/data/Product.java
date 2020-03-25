@@ -20,11 +20,15 @@ public class Product {
     private BigDecimal stock;
     private String productImageUrl;
 
+
     @ManyToMany(mappedBy = "products")
     List<Orders> orders  = new ArrayList<>();
 
     @ManyToMany(mappedBy = "products")
     List<Orders> carts  = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<UserProduct> userProducts = new ArrayList<>();
 
     protected Product(){}
 
@@ -66,5 +70,13 @@ public class Product {
 
     public void setStock(BigDecimal stock) {
         this.stock = stock;
+    }
+
+    public String getProductImageUrl() {
+        return productImageUrl;
+    }
+
+    public void setProductImageUrl(String productImageUrl) {
+        this.productImageUrl = productImageUrl;
     }
 }
