@@ -25,7 +25,9 @@ public class Orders {
             name = "order_product",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    List<Product> products = new ArrayList<>();;
+    List<Product> products = new ArrayList<>();
+
+
 
     Date createDate;
 

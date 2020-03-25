@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.data.Cart;
 import com.example.demo.data.Orders;
 import com.example.demo.data.Product;
 import com.example.demo.data.User;
@@ -25,6 +26,9 @@ public class UserRepositoryIntegrationTest {
     UserRepository userRepository;
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    CartRepository cartRepository;
 
     @Test
     void testInsertUser() throws Exception {
@@ -96,6 +100,26 @@ public class UserRepositoryIntegrationTest {
         User tempUser = userRepository.findByLastName("bob");
         assertThat(tempUser.getOrders().stream().filter(p -> p.getRate().equals("5")).findFirst().get().getComment())
                 .isEqualTo("Very Good one");
+
+    }
+
+    @Test
+    void testInsertCartItems() throws Exception {
+        Cart cart = new Cart("abc-wer", new Date());
+        Product product_1 = new Product("Samsung", "Samsung XL", 20.98, new BigDecimal(20));
+        Product product_2 = new Product("Apple", "Apple XL", 220.98, new BigDecimal(120));
+        productRepository.save(product_1);
+        productRepository.save(product_2);
+
+        Product product = productRepository.findByProductName("Apple").get();
+        cart.addProduct(product);
+
+        cartRepository.save(cart);
+        Cart selectCart = cartRepository.findByVoucherCode("abc-wer").get();
+
+
+        assertThat(selectCart.getProducts().size())
+                .isEqualTo(1);
 
     }
 }

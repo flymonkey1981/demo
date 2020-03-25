@@ -18,9 +18,13 @@ public class Product {
     private String productDesc;
     private Double price;
     private BigDecimal stock;
+    private String productImageUrl;
 
     @ManyToMany(mappedBy = "products")
     List<Orders> orders  = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "products")
+    List<Orders> carts  = new ArrayList<>();
 
     protected Product(){}
 
