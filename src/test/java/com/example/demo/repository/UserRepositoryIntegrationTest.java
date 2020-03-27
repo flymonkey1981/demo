@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 import com.example.demo.data.*;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace.NONE;
@@ -31,8 +33,8 @@ public class UserRepositoryIntegrationTest {
     void testInsertUser() throws Exception {
         String sdob = "31/12/1998";
         Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
-        User u1 = new User("vcb", "bob", "vc", dob, 1);
-        User u2 = new User("springt", "terry", "spring", dob, 1);
+        User u1 = new User("vcb", "bob", "vc", dob, 1,"1234");
+        User u2 = new User("springt", "terry", "spring", dob, 1,"1234");
         User returnUser = userRepository.save(u1);
         assertThat(returnUser.getLastName())
                 .isEqualTo("bob");
@@ -44,8 +46,8 @@ public class UserRepositoryIntegrationTest {
     void testInsertUserOrders() throws Exception {
         String sdob = "31/12/1998";
         Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
-        User u1 = new User("vcb", "bob", "vc", dob, 1);
-        User u2 = new User("springt", "terry", "spring", dob, 1);
+        User u1 = new User("vcb", "bob", "vc", dob, 1,"1234");
+        User u2 = new User("springt", "terry", "spring", dob, 1,"1234");
         User returnUser = userRepository.save(u1);
         userRepository.save(u2);
         assertThat(returnUser.getLastName())
@@ -70,8 +72,8 @@ public class UserRepositoryIntegrationTest {
     void testInsertUserOrderItems() throws Exception {
         String sdob = "31/12/1998";
         Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
-        User u1 = new User("vcb", "bob", "vc", dob, 1);
-        User u2 = new User("springt", "terry", "spring", dob, 1);
+        User u1 = new User("vcb", "bob", "vc", dob, 1,"1234");
+        User u2 = new User("springt", "terry", "spring", dob, 1,"1234");
         User returnUser = userRepository.save(u1);
         userRepository.save(u2);
         assertThat(returnUser.getLastName())
@@ -121,6 +123,22 @@ public class UserRepositoryIntegrationTest {
     }
 
     @Test
+    void testFindByUserNameAndHashpassword() throws Exception {
+        String sdob = "31/12/1998";
+        Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
+        User u1 = new User("vcb", "bob", "vc", dob, 1,"1234");
+
+        User returnUser = userRepository.save(u1);
+
+        User u = userRepository.findByUserNameAndHashPassword("vcb","1234").get();
+        assertThat(u.getFirstName())
+                .isEqualTo("vc");
+        User u2 = userRepository.findByUserNameAndHashPassword("vcb","12345").get();
+        assertThat(u2.getFirstName())
+                .isEqualTo("vc");
+    }
+
+    @Test
     void testUserProductJoinTable() throws Exception {
         Cart cart = new Cart("abc-wer", new Date());
         Product product_1 = new Product("Samsung", "Samsung XL", 20.98, new BigDecimal(20));
@@ -133,7 +151,7 @@ public class UserRepositoryIntegrationTest {
         String sdob = "31/12/1998";
         Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
 
-        User u1 = new User("vcb", "bob", "vc", dob, 1);
+        User u1 = new User("vcb", "bob", "vc", dob, 1,"1234");
         UserProduct userProduct = new UserProduct(u1,product, new Date(), "it is good", 5);
         u1.addUserProduct(userProduct);
         userRepository.save(u1);

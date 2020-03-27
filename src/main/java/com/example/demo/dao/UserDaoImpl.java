@@ -48,4 +48,9 @@ public class UserDaoImpl implements UserDao{
     public Optional<User> selectUserById(Long id) {
         return userRepository.findById(id);
     }
+
+    @Override
+    public Optional<User> findByUserNameAndHashPassword(String userName, String hashPassword) {
+        return userRepository.findByUserNameAndHashPassword(userName, hashPassword);
+    }
 }

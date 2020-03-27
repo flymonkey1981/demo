@@ -31,6 +31,9 @@ public class User implements Serializable {
 
     private int status;
 
+    @Column(name="hash_password")
+    private String hashPassword;
+
     @OneToMany(
             mappedBy = "user",
             cascade = CascadeType.ALL,
@@ -50,12 +53,13 @@ public class User implements Serializable {
 
     protected User() {}
 
-    public User(String userName, String lastName, String firstName, Date dob, int status) {
+    public User(String userName, String lastName, String firstName, Date dob, int status, String hashPassword) {
         this.userName = userName;
         this.lastName = lastName;
         this.firstName = firstName;
         this.dob = dob;
         this.status = status;
+        this.hashPassword = hashPassword;
     }
 
     public String getUserName() {
@@ -112,4 +116,11 @@ public class User implements Serializable {
         return this.userProducts;
     }
 
+    public String getHashPassword() {
+        return hashPassword;
+    }
+
+    public void setHashPassword(String hashPassword) {
+        this.hashPassword = hashPassword;
+    }
 }

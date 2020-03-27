@@ -43,7 +43,7 @@ public class UserControllerIntegrationTest {
             throws Exception {
         String sdob = "31/12/1998";
         Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
-        User alex = new User("alexc","alex", "chen", dob, 1);
+        User alex = new User("alexc","alex", "chen", dob, 1,"1234");
 
         List<User> allUsers = Arrays.asList(alex);
 
