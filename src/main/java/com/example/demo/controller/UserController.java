@@ -24,8 +24,8 @@ public class UserController {
     }
 
     @PostMapping
-    void createUser(@RequestBody User user) {
-        userService.insertUser(user);
+    User createUser(@RequestBody User user) {
+       return userService.insertUser(user);
 
     }
 
@@ -48,6 +48,15 @@ public class UserController {
     @RequestMapping(value="/login", method = GET)
     ResponseEntity<?> login(@RequestParam("username") String username, @RequestParam ("hashpassword") String hashpassword) {
         Optional<User> group =userService.findByUserNameAndHashPassword(username, hashpassword);
+        return group.map(response -> ResponseEntity.ok().body(response))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+
+
+    }
+
+    @RequestMapping(value="/isUserNameUnique", method = GET)
+    ResponseEntity<?> login(@RequestParam("username") String username) {
+        Optional<User> group =userService.findByUserName(username);
         return group.map(response -> ResponseEntity.ok().body(response))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
 

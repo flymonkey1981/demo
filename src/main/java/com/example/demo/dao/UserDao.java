@@ -12,4 +12,6 @@ public interface UserDao {
     Optional<User> selectUserById(Long id);
 
     Optional<User> findByUserNameAndHashPassword(String userName, String hashPassword);
+
+    Optional<User> findByUserName(String userName);
 }
