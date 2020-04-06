@@ -19,6 +19,7 @@ public class Product {
     private Double price;
     private BigDecimal stock;
     private String productImageUrl;
+    private Boolean isBestSelling;
 
 
     @ManyToMany(mappedBy = "products")
@@ -78,5 +79,13 @@ public class Product {
 
     public void setProductImageUrl(String productImageUrl) {
         this.productImageUrl = productImageUrl;
+    }
+
+    public Boolean getBestSelling() {
+        return isBestSelling;
+    }
+
+    public void setBestSelling(Boolean bestSelling) {
+        isBestSelling = bestSelling;
     }
 }

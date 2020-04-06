@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
@@ -136,6 +137,12 @@ public class UserRepositoryIntegrationTest {
         User u2 = userRepository.findByUserNameAndHashPassword("vcb","12345").get();
         assertThat(u2.getFirstName())
                 .isEqualTo("vc");
+    }
+
+    @Test
+    void testFindByIsBestSelling() throws Exception {
+        List<Product> products = productRepository.findByIsBestSelling(true);
+        assertThat(products.size()).isEqualTo(2);
     }
 
     @Test
