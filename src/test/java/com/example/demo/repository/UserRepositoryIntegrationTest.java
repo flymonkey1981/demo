@@ -30,18 +30,6 @@ public class UserRepositoryIntegrationTest {
     @Autowired
     CartRepository cartRepository;
 
-    @Test
-    void testInsertUser() throws Exception {
-        String sdob = "31/12/1998";
-        Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
-        User u1 = new User("vcb", "bob", "vc", dob, 1,"1234");
-        User u2 = new User("springt", "terry", "spring", dob, 1,"1234");
-        User returnUser = userRepository.save(u1);
-        assertThat(returnUser.getLastName())
-                .isEqualTo("bob");
-
-
-    }
 
 
 }
