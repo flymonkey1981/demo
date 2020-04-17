@@ -11,8 +11,7 @@ phases:
       - ./gradlew build
 artifacts:
   files:
-    - build/libs/*.jar
+    - build/*.jar
     - appspec.yml
     - scripts/*
-    - '**/*'
   discard-paths: yes
