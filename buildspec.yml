@@ -3,6 +3,10 @@ version: 0.1
 phases:
   build:
     commands:
+      - echo Starting build `date`
+      - echo Current directory is `pwd`
+      - whereis gradle
+      - which gradle
       - chmod +x gradlew
       - ./gradlew build
 artifacts:
@@ -10,4 +14,5 @@ artifacts:
     - build/libs/*.jar
     - appspec.yml
     - scripts/*
+    - '**/*'
   discard-paths: yes
