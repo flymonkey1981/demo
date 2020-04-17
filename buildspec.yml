@@ -7,7 +7,7 @@ phases:
       - ./gradlew build
 artifacts:
   files:
-    - build/libs/demo-0.1.jar
+    - build/libs/demo-0.0.1-SNAPSHOT.jar
     - appspec.yml
     - scripts/*
   discard-paths: yes
