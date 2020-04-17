@@ -38,25 +38,25 @@ public class UserControllerIntegrationTest {
     @MockBean
     private UserService service;
 
-    @Test
-    public void givenUser_whenUsers_thenReturnJsonArray()
-            throws Exception {
-        String sdob = "31/12/1998";
-        Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
-        User alex = new User("alexc","alex", "chen", dob, 1,"1234");
-
-        List<User> allUsers = Arrays.asList(alex);
-
-        given(service.listUsers()).willReturn(allUsers);
-
-        mvc.perform(get("/api/v1/user")
-                .with(user(TEST_USER_ID))
-                .with(csrf())
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].lastName", is(alex.getLastName())))
-                .andExpect(jsonPath("$[0].firstName", is(alex.getFirstName())));
-                //.andExpect(jsonPath("$[0].dob", is(alex.getDob())));
-    }
+//    @Test
+//    public void givenUser_whenUsers_thenReturnJsonArray()
+//            throws Exception {
+//        String sdob = "31/12/1998";
+//        Date dob = new SimpleDateFormat("dd/MM/yyyy").parse(sdob);
+//        User alex = new User("alexc","alex", "chen", dob, 1,"1234");
+//
+//        List<User> allUsers = Arrays.asList(alex);
+//
+//        given(service.listUsers()).willReturn(allUsers);
+//
+//        mvc.perform(get("/api/v1/user")
+//                .with(user(TEST_USER_ID))
+//                .with(csrf())
+//                .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$", hasSize(1)))
+//                .andExpect(jsonPath("$[0].lastName", is(alex.getLastName())))
+//                .andExpect(jsonPath("$[0].firstName", is(alex.getFirstName())));
+//                //.andExpect(jsonPath("$[0].dob", is(alex.getDob())));
+//    }
 }
