@@ -11,10 +11,7 @@ phases:
       - ./gradlew build
       - mkdir build-output
       - cp build/*.jar appspec.yml scripts/* build-output
-      - cd build-output
-      - zip demo.zip ./*
-      - mv demo.zip ../
-      - cd ..
+      - zip -j demo.zip build-output/*
       - echo Build completed on `date`
 artifacts:
   files:
