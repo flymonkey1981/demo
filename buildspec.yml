@@ -9,9 +9,8 @@ phases:
       - which gradle
       - chmod +x gradlew
       - ./gradlew build
+      - zip demo.zip build/*.jar appspec.yml scripts/*
 artifacts:
   files:
-    - build/*.jar
-    - appspec.yml
-    - scripts/*
+    - demo.zip
   discard-paths: yes
