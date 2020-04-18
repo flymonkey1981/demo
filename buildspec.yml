@@ -16,4 +16,4 @@ phases:
 artifacts:
   files:
     - demo.zip
-  discard-paths: yes
+#  discard-paths: yes
