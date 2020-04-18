@@ -10,6 +10,7 @@ phases:
       - chmod +x gradlew
       - ./gradlew build
       - zip demo.zip build/*.jar appspec.yml scripts/*
+      - echo Build completed on `date`
 artifacts:
   files:
     - demo.zip
