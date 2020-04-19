@@ -9,12 +9,14 @@ phases:
       - which gradle
       - chmod +x gradlew
       - ./gradlew build
-      - mkdir build-output
-      - cp build/*.jar appspec.yml scripts/* build-output
-      - chmod 777 build-output/*.jar
-      - zip -j demo.zip build-output/*
+#      - mkdir build-output
+#      - cp build/*.jar appspec.yml scripts/* build-output
+#      - chmod 777 build-output/*.jar
+#      - zip -j demo.zip build-output/*
       - echo Build completed on `date`
 artifacts:
   files:
-    - demo.zip
-#  discard-paths: yes
+    - build/*.jar
+    - appspec.yml
+    - scripts/*
+  discard-paths: yes
