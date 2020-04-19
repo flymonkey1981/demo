@@ -1,4 +1,4 @@
 #!/bin/bash
 
-service shopping-app stop
+systemctl stop shopping-app1
 exit 0

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-service shopping-app start
+systemctl start shopping-app1
